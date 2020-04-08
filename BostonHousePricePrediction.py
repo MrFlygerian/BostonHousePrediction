@@ -230,9 +230,9 @@ def nearest_neighbor_price(x):
     return neighbor_avg
 #----------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------
-# Load the Boston housing dataset
+#Complete algorithm
 
-# #Question: Can one use one function to sperate all data into its features and outputs?
+#Load data and prepare features and target
 dataset = 'housing.csv'
 data = pd.read_csv(dataset)
 prices = data['MEDV']
@@ -249,6 +249,7 @@ features = data.drop('MEDV', axis = 1)
 # Shuffle and split the data into training and testing subsets
 X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=0.2, random_state = 42)
 
+##Visually compare results for different max_depths
 # ModelLearning(features, prices)
 # ModelComplexity(features, prices)
 
@@ -256,10 +257,12 @@ X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=
 reg = fit_model(X_train, y_train)
 reg_2 = fit_model_2(X_train, y_train) 
 
+#New data to be performed upon by the fitted regression model
 client_data = [[2, 80, 50], # Client 1
                [4, 40, 20], # Client 2
                [6, 10, 10]]  # Client 3
 
+#Predict selling price and compare it to the selling price of its neighbours
 index = 0
 for i in (client_data):
     arr = np.array(i).reshape(1,-1)
