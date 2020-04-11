@@ -230,26 +230,30 @@ def nearest_neighbor_price(x):
     return neighbor_avg
 #----------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------
-#Complete algorithm
+#Complete Algorithm
 
-#Load data and prepare features and target
+#Load data and seperate into feature and target variable
 dataset = 'housing.csv'
 data = pd.read_csv(dataset)
 prices = data['MEDV']
 features = data.drop('MEDV', axis = 1)
-# cm = np.corrcoef(data.values.T)
-# sns.set(font_scale=1.5)
-# hm = sns.heatmap(cm,
-#                 cbar=True,
-#                 annot=True,
-#                 square=True,
-#                 yticklabels=cols,
-#                 xticklabels=cols)
+
+cols = data.columns
+
+#Rudimentary EDA to explore corrolations in the data
+cm = np.corrcoef(data.values.T)
+sns.set(font_scale=1.5)
+hm = sns.heatmap(cm,
+                cbar=True,
+                annot=True,
+                square=True,
+                yticklabels=cols,
+                xticklabels=cols)
 
 # Shuffle and split the data into training and testing subsets
 X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=0.2, random_state = 42)
 
-##Visually compare results for different max_depths
+##More EDA (display how the model quality changes with differing parameters)
 # ModelLearning(features, prices)
 # ModelComplexity(features, prices)
 
@@ -257,12 +261,11 @@ X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=
 reg = fit_model(X_train, y_train)
 reg_2 = fit_model_2(X_train, y_train) 
 
-#New data to be performed upon by the fitted regression model
 client_data = [[2, 80, 50], # Client 1
                [4, 40, 20], # Client 2
                [6, 10, 10]]  # Client 3
 
-#Predict selling price and compare it to the selling price of its neighbours
+#Predict selling price of client house and compare to neighbouring houses in the data set (houses with similar features)
 index = 0
 for i in (client_data):
     arr = np.array(i).reshape(1,-1)
