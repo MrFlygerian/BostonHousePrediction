@@ -1,2 +1,2 @@
 # BostonHousePrediction
-Regression training usoing boston house price data from 1978
+Regression training using boston house price data from 1978
