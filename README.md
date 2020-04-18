@@ -1,4 +1,4 @@
-# BostonHousePrediction
+# Boston House Price Prediction
 This is regression training using boston house price data from 1978. It's main purpose is to predic the price of a house based on the number of rooms in the house, the relative poverty percentage in the house's neighborhood and the average class size, represented as the pupil-teacher ratio. The regressor used here is a Decision Tree regressor.
 
 There is also some data analaysis performed near the beginning of the script, to give a brief overview of the data its distribution and correlations, as well as some information about the nature of the models being used. The Model Learning and Model Complexity graphs are used for model analysis and are generated from functions in the visuals file. They give a description of how the model predictive power changes as a function of kew Decision Tree parameters (in this case the max depth is the parameter being principally examined).
