@@ -52,7 +52,7 @@ def fit_model_2(X, y):
 
     # Create cross-validation sets from the training data
     # ShuffleSplit works iteratively compared to KFOLD
-    # It saves computation time when your dataset grows
+    # Saves computation time when your dataset grows
     # X.shape[0] is the total number of elements
     # n_iter is the number of re-shuffling & splitting iterations.
     cv_sets = ShuffleSplit(X.shape[0], test_size = 0.20, random_state = 42)
@@ -70,7 +70,7 @@ def fit_model_2(X, y):
     scoring_fnc = make_scorer(performance_metric)
 
     # TODO: Create the grid search object
-    # You would realize we manually created each, including scoring_func using R^2
+    # We manually created each, including scoring_func using R^2
     rand = RandomizedSearchCV(regressor, params, cv=cv_sets, scoring=scoring_fnc)
 
     # Fit the grid search object to the data to compute the optimal model
@@ -123,8 +123,6 @@ dataset = 'housing.csv'
 data = pd.read_csv(dataset)
 prices = data['MEDV']
 features = data.drop('MEDV', axis = 1)
-
-
 
 #Rudimentary EDA to explore corrolations in the data
 cols = data.columns
